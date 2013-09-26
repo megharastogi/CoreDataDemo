@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Person.h"
 
 @interface cfDetailViewController : UIViewController <UISplitViewControllerDelegate>
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) Person * detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *userName;
+@property (strong, nonatomic) IBOutlet UILabel *age;
+@property (strong, nonatomic) IBOutlet UILabel *timeStamp;
+@property (strong, nonatomic) IBOutlet UILabel *devices;
+
 @end

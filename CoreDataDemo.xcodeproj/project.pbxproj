@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047D7C9A17F3A73D0072B7A4 /* Person.plist in Resources */ = {isa = PBXBuildFile; fileRef = 047D7C9917F3A73D0072B7A4 /* Person.plist */; };
 		04E40AA017F3782900081E81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E40A9F17F3782900081E81 /* Foundation.framework */; };
 		04E40AA217F3782900081E81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E40AA117F3782900081E81 /* CoreGraphics.framework */; };
 		04E40AA417F3782900081E81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E40AA317F3782900081E81 /* UIKit.framework */; };
@@ -26,6 +27,9 @@
 		04E40ACD17F3782A00081E81 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E40AA517F3782A00081E81 /* CoreData.framework */; };
 		04E40AD517F3782A00081E81 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04E40AD317F3782A00081E81 /* InfoPlist.strings */; };
 		04E40AD717F3782A00081E81 /* CoreDataDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E40AD617F3782A00081E81 /* CoreDataDemoTests.m */; };
+		04E40AE217F37B2A00081E81 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E40AE117F37B2A00081E81 /* Person.m */; };
+		04E40AE517F37B2A00081E81 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E40AE417F37B2A00081E81 /* Device.m */; };
+		04E40AE817F37C6200081E81 /* cfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E40AE717F37C6200081E81 /* cfCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		047D7C9917F3A73D0072B7A4 /* Person.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Person.plist; sourceTree = "<group>"; };
 		04E40A9C17F3782900081E81 /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E40A9F17F3782900081E81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		04E40AA117F3782900081E81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -63,6 +68,12 @@
 		04E40AD217F3782A00081E81 /* CoreDataDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataDemoTests-Info.plist"; sourceTree = "<group>"; };
 		04E40AD417F3782A00081E81 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		04E40AD617F3782A00081E81 /* CoreDataDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataDemoTests.m; sourceTree = "<group>"; };
+		04E40AE017F37B2A00081E81 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		04E40AE117F37B2A00081E81 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		04E40AE317F37B2A00081E81 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		04E40AE417F37B2A00081E81 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		04E40AE617F37C6200081E81 /* cfCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfCell.h; sourceTree = "<group>"; };
+		04E40AE717F37C6200081E81 /* cfCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cfCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +146,14 @@
 				04E40AC017F3782A00081E81 /* cfDetailViewController.m */,
 				04E40AC217F3782A00081E81 /* Images.xcassets */,
 				04E40AB917F3782A00081E81 /* CoreDataDemo.xcdatamodeld */,
+				04E40AE317F37B2A00081E81 /* Device.h */,
+				04E40AE417F37B2A00081E81 /* Device.m */,
+				04E40AE017F37B2A00081E81 /* Person.h */,
+				04E40AE117F37B2A00081E81 /* Person.m */,
 				04E40AA817F3782A00081E81 /* Supporting Files */,
+				04E40AE617F37C6200081E81 /* cfCell.h */,
+				04E40AE717F37C6200081E81 /* cfCell.m */,
+				047D7C9917F3A73D0072B7A4 /* Person.plist */,
 			);
 			path = CoreDataDemo;
 			sourceTree = "<group>";
@@ -247,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E40AB817F3782A00081E81 /* Main_iPad.storyboard in Resources */,
+				047D7C9A17F3A73D0072B7A4 /* Person.plist in Resources */,
 				04E40AC317F3782A00081E81 /* Images.xcassets in Resources */,
 				04E40AB517F3782A00081E81 /* Main_iPhone.storyboard in Resources */,
 				04E40AAC17F3782A00081E81 /* InfoPlist.strings in Resources */,
@@ -268,10 +287,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E40AE217F37B2A00081E81 /* Person.m in Sources */,
 				04E40AC117F3782A00081E81 /* cfDetailViewController.m in Sources */,
 				04E40AAE17F3782A00081E81 /* main.m in Sources */,
 				04E40ABB17F3782A00081E81 /* CoreDataDemo.xcdatamodeld in Sources */,
+				04E40AE817F37C6200081E81 /* cfCell.m in Sources */,
 				04E40AB217F3782A00081E81 /* cfAppDelegate.m in Sources */,
+				04E40AE517F37B2A00081E81 /* Device.m in Sources */,
 				04E40ABE17F3782A00081E81 /* cfMasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +513,7 @@
 				04E40ADC17F3782A00081E81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04E40ADD17F3782A00081E81 /* Build configuration list for PBXNativeTarget "CoreDataDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +522,7 @@
 				04E40ADF17F3782A00081E81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

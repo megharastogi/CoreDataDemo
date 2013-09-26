@@ -7,6 +7,8 @@
 //
 
 #import "cfDetailViewController.h"
+#import "Person.h"
+#import "Device.h"
 
 @interface cfDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -36,7 +38,21 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+        self.timeStamp.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+        self.userName.text = [[self.detailItem valueForKey:@"userName"] description];
+        self.age.text = [[self.detailItem valueForKey:@"age"] description];
+        NSString *devicesName = @"";
+        
+        
+        for(Device * d in self.detailItem.devices){
+            
+            NSString *device = d.deviceType;
+            devicesName = [devicesName stringByAppendingString:device];
+
+        }
+        
+        self.devices.text = devicesName;
+        
     }
 }
 

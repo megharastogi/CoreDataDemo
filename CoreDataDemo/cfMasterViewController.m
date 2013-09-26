@@ -9,13 +9,20 @@
 #import "cfMasterViewController.h"
 
 #import "cfDetailViewController.h"
+#import "cfCell.h"
+#import "Person.h"
+#import "Device.h"
 
 @interface cfMasterViewController ()
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureCell:(cfCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation cfMasterViewController
+{
 
+    NSArray *people;
+    NSArray *searchResults;
+}
 - (void)awakeFromNib
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -34,6 +41,25 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (cfDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    
+//    NSString *plistCatPath = [[NSBundle mainBundle] pathForResource:@"Person" ofType:@"plist"];
+//   self.peopleList= [NSMutableArray arrayWithContentsOfFile:plistCatPath];
+//    
+//    
+//
+//    
+//    for(NSDictionary *dict in self.peopleList){
+//        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+//
+//        Person *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:context];
+//
+//        newManagedObject.userName = dict[@"userName"];
+//        newManagedObject.age = dict[@"age"];
+//
+//    }
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,15 +69,87 @@
 }
 
 - (void)insertNewObject:(id)sender
+
 {
+    
+    
+    
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    Person *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
     [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
     
+    [newManagedObject setValue:@"Megha" forKey:@"userName"];
+    NSNumber *age = [[NSNumber alloc] initWithInt:25];
+    [newManagedObject setValue:age forKey:@"age"];
+    
+    
+    Person *newManagedObject1 = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
+    // If appropriate, configure the new managed object.
+    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+    [newManagedObject1 setValue:[NSDate date] forKey:@"timeStamp"];
+    
+    [newManagedObject1 setValue:@"Seattle" forKey:@"userName"];
+    NSNumber *age1 = [[NSNumber alloc] initWithInt:12];
+    [newManagedObject1 setValue:age1 forKey:@"age"];
+    
+    
+    Person *newManagedObject2 = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
+    // If appropriate, configure the new managed object.
+    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+    [newManagedObject2 setValue:[NSDate date] forKey:@"timeStamp"];
+    
+    [newManagedObject2 setValue:@"SF" forKey:@"userName"];
+    NSNumber *age2 = [[NSNumber alloc] initWithInt:12];
+    [newManagedObject2 setValue:age2 forKey:@"age"];
+
+    
+    Person *newManagedObject3 = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
+    // If appropriate, configure the new managed object.
+    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+    [newManagedObject3 setValue:[NSDate date] forKey:@"timeStamp"];
+    
+    [newManagedObject3 setValue:@"LA" forKey:@"userName"];
+    NSNumber *age3 = [[NSNumber alloc] initWithInt:12];
+    [newManagedObject3 setValue:age3 forKey:@"age"];
+
+    
+    Person *newManagedObject4 = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
+    // If appropriate, configure the new managed object.
+    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+    [newManagedObject4 setValue:[NSDate date] forKey:@"timeStamp"];
+    
+    [newManagedObject4 setValue:@"SF 123" forKey:@"userName"];
+    NSNumber *age4 = [[NSNumber alloc] initWithInt:14];
+    [newManagedObject4 setValue:age4 forKey:@"age"];
+
+
+
+    Device *device = [NSEntityDescription insertNewObjectForEntityForName:@"Device" inManagedObjectContext:context];
+
+    
+    device.deviceType = @"iPad";
+    
+    device.owner = (Person *)newManagedObject;
+    
+    Device *device2 = [NSEntityDescription insertNewObjectForEntityForName:@"Device" inManagedObjectContext:context];
+    
+    device2.deviceType = @"iPhone";
+    
+    device2.owner = (Person *)newManagedObject;
+    
+    
+    [newManagedObject addDevicesObject:device];
+
+    [newManagedObject addDevicesObject:device2];
+
     // Save the context.
     NSError *error = nil;
     if (![context save:&error]) {
@@ -71,14 +169,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+        
+    } else {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+        return [sectionInfo numberOfObjects];
+    }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (cfCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+    cfCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
+    } else {
+        [self configureCell:cell atIndexPath:indexPath];
+    }
+    
     return cell;
 }
 
@@ -137,7 +247,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Person" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -146,6 +256,8 @@
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
+    
+    people = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -226,10 +338,40 @@
 }
  */
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(cfCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.userName.text = [[object valueForKey:@"userName"] description];
+    cell.age.text = [[object valueForKey:@"age"] description];
+
+    
 }
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"SELF contains[cd] %@",
+                                    searchText];
+    NSMutableArray *peopleUsername = [[NSMutableArray alloc] init];
+    for(Person *p in people){
+        [peopleUsername addObject:p.userName];
+    }
+        searchResults = [peopleUsername filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+
+
+
 
 @end
